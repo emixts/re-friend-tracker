@@ -6,7 +6,7 @@ export class GuiModel {
 
     private _guiModel = {
         "application": {
-            "title": "ZHAW Requirements Engineering Friend Tracker (FS2024)",
+            "title": "Elza's Friend Tracker (FS2024)",
             "formList": [
                 {
                     "id": "FriendForm",
@@ -26,6 +26,14 @@ export class GuiModel {
                             "name": "FirstName",
                             "width": 1,
                             "required": true
+                        },
+                        
+                        { 
+                        "id": "nickname", 
+                        "type": "text",     
+                        "name": "Nickname", 
+                        "width": 2, 
+                        "required": true 
                         },
                         {
                             "id":   "location",
@@ -49,6 +57,14 @@ export class GuiModel {
                             "height": 4,
                             "maxLength": 5000,
                         },
+                        {"id":   
+                        "group", 
+                        "type": "autocomplete", 
+                        "name": "Group", 
+                        "url": "/group", 
+                        "form": "GroupForm", 
+                        "width": 2
+                    },
                         {
                             "type": "deleteButton",
                             "name": "Delete"
@@ -118,12 +134,44 @@ export class GuiModel {
                         }
                     ]
                 },
+                {"id": "GroupForm", 
+                "title": "Group", 
+                "url": "/group", 
+                "formFieldList": [ 
+                { 
+                "id": "name", 
+                "type": "text", 
+                "name": "GroupName", 
+                "width": 2, 
+                "required": true 
+                }, 
+                { 
+                "type": "deleteButton", 
+                "name": "Delete" 
+                }, 
+                { 
+                "type": "cancelButton", 
+                "name": "Cancel" 
+                }, 
+                { 
+                "type": "okButton", 
+                "name": "Ok" 
+                } 
+                ] 
+            }
             ],
             "pageList": [
                 {
                     "id": "mainmenu",
                     "name": "MainMenu",
                     "elementList": [
+                        { 
+                        "type": "button", 
+                        "name": "Groups", 
+                        "icon": "fa-weixin", 
+                        "color": "wisteria", 
+                        "page": "groupspage",
+                    },
                         {
                             "type": "button",
                             "name": "Friends",
@@ -194,7 +242,35 @@ export class GuiModel {
                             }
                         },
                     ]
+
                 },
+                { 
+                    "id": "groupspage", 
+                    "elementList": [ 
+                        { 
+                            "type": "backbutton", 
+                        }, 
+                        { 
+                            "type": "newButton", 
+                            "name": "NewGroup", 
+                            "icon": "fa-weixin", 
+                            "color": "green", 
+                            "form": { 
+                                "form": "GroupForm" 
+                            } 
+                        },
+                        {"type": "list", 
+                        "icon": "fa-weixin", 
+                        "color": "wisteria", 
+                        "search": true, 
+                        "url": "/group", 
+                        "form": { 
+                        "form": "GroupForm" 
+                        } 
+                    },
+                         
+                    ] 
+                } 
             ]
         }
     };
